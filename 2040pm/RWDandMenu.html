@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>林俊彥</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <header id="header">
+        <a href="#" class="logo">RESUME</a>
+        <ul>
+            <li><a href="#home"  onclick="toggle()">Home</a></li>
+            <li><a href="#about" onclick="toggle()">About</a></li>
+            <li><a href="#skills" onclick="toggle()">Skills</a></li>
+            <li><a href="#works" onclick="toggle()">Works</a></li>
+            <li><a href="#contact" onclick="toggle()">Contact </a></li>
+        </ul>
+
+        <div class="toggle" onclick="toggle()"></div>
+    </header>
+        <!--Banner-->
+    <div id="home" class="banner" >
+        
+        <div class="content">
+            <h2>Jun-Yan,Lin</h2>
+            <p>Seeking full time position as Front End Developer</p>
+            <a href="#about"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i>more</a>
+        </div>
+    </div>
+
+    <!--About-->
+    <section id="about" class="about">
+        <div class="contentBx">
+            <h2 class="heading">About</h2>
+            <P class="text">
+                2018年輔仁大學畢業，2019年底退伍<br><br>
+                我是林俊彥，從大學期間開始接觸HTML與CSS。我在學習的過程中找到了興趣與熱情，希望能寫出更多有趣、方便的介面，增進使用者體驗並成為專業的前端開發人員。</P>
+        </div>
+        <div class="imgBx"></div>
+    </section>
+    
+    
+
+    <!--Skills-->
+    <section id="skills"class="skills">
+        <h2 class="heading">Skills</h2>
+        <p class="text"></p>
+
+        <div class="container">
+            <div class="skillsBx">
+                <div>
+                    <img src="assets/html-icon.png">
+                    <h2>HTML5</h2>
+                    <li>對網頁效能、SEO有概念</li>
+                    <li>善用 Boostrap 格線系統</li>
+                </div>
+            </div>
+            <div class="skillsBx">
+                <div>
+                    <img src="assets/js-icon.png">
+                    <h2>JavaScript</h2>
+                    <li>引入 jQuery，撰寫並建立互動動畫</li>
+                </div>
+            </div>
+            <div class="skillsBx">
+                <div>
+                    <img src="assets/css-icon.png">
+                    <h2>CSS3</h2>
+                    <li>規劃響應式網頁版型（RWD）</li>
+                    <li>製作動畫，以及利用偽類別製作互動按鈕</li>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--Works-->
+    <section id="works" class="works">
+        <h2 class="heading">Works</h2>
+        <p class="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga, debitis temporibus. Dolorum quo sapiente voluptas tempora eveniet laborum, assumenda ipsum adipisci architecto harum neque autem aperiam enim voluptates quibusdam in!</p>
+        <div class="imgBx">
+            <img src="assets/web.png" >
+            <img src="assets/poe.png" >
+            <img src="assets/web1.png" >
+            <img src="assets/cover.png" >
+
+        </div>
+    </section>
+
+
+    <!--Contact-->
+    <section id="contact" class="contact">
+        <h2 class="heading">Contact Me</h2>
+        <div class="textBx">
+            <p class="text"><i class="fa fa-mobile fa-2x" aria-hidden="true"> 0916-712-901</i></p>
+            <p class="text"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i> ruky8459@gmail.com</p>
+        </div>
+    </section>
+
+            
+        </div>
+    </section>
+    <!--Footer-->
+    <section class="footer">
+        <p class="text">&copf; Jun-Yan,Lin 2020 </p>
+        <ul>
+            <p class="text">Follow on : </p>
+            <li><a href="https://www.facebook.com/junyan.lin.9/" target="_blank"><img src="assets/facebook.png" ></a></li>
+            <li><a href="https://twitter.com/home?lang=zh-tw" target="_blank"><img src="assets/twitter.png" ></a></li>
+            <li><a href="https://www.linkedin.com/in/%E4%BF%8A%E5%BD%A5-%E6%9E%97-b770711b1/" target="_blank"><img src="assets/linkedin.png" ></a></li>
+        </ul>
+    </section>
+    <!--透過toggle被點擊 為header新增/移除clss:active 以控制後續動畫-->
+    <script type="text/javascript">
+        function toggle(){
+            var header = document.getElementById("header")
+            header.classList.toggle('active')
+        }
+    </script>
+
+
+
+
+    <!--下次試試vue
+        <script src="https://npmcdn.com/vue@2.6.11/dist/vue.min.js"></script>
+    <script>
+    var app = new Vue({
+        el: '#header',
+
+        data: {
+            isActive: false
+        },
+
+        methods: {
+            myFilter: function() {
+            this.isActive = !this.isActive;
+            // some code to filter users
+            }
+        }
+        })
+        </script>-->
+</body>
+</html>
