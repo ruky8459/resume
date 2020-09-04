@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueData</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <p>
+                <!--v-model雙向綁定:這邊寫入也會到資料，資料改變這邊也會顯示-->
+                <input type="text" v-model.trim="input">
+                <!--監聽事件v-on:click或者縮寫@click，Vue透過template以資料去操作而不直接接觸DOM元素-->
+                <a href="javascript:;" v-on:click="createHandler">CREATE</a>
+            </p>
+            <ol>
+                <!--透過Vue的v-for迴圈，從contents抓content去跑，就能根據content做出更多<li>-->
+                <li v-for="(content,index) in contents">
+                    {{ content.content }}
+                    <a href="javascript:;">UPDATE</a>
+                    <a href="javascript:;" v-on:click="deleteHandler(index)">DELETE</a>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <!--
+        引入了以下模組vue vue-router vuex axios
+    -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.0.1/vue-router.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.0.1/vuex.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <!--
+    el= element
+    res= response
+    生命週期 mounted:上場了，綁定到指定的DOM上。用來讀取API
+    
+    -->
+    <script >
+        new Vue({
+            el: '#app',
+            data:{
+                input: '',
+                contents: []
+            },
+            methods:{
+                createHandler(){
+                    //避免空白資料輸入
+                    if(!this.input) return false
+                    axios.post('http://localhost:3000/contents',{
+                        content: this.input
+                    }).then((res)=>{
+                        /*畫面更新，先把this.input清空再來把res.data PUSH到contents[]裡面*/
+                        this.input=''
+                        this.contents.push(res.data)
+                    })
+                },
+                //不用index用id是因為一旦有刪除過的話index序就不會等於id了
+                deleteHandler(index) {
+                    let target = this.contents[index]
+                    axios.delete('http://localhost:3000/contents/${target.id}').then((res)=>{
+                        this.contents.splice(index,1)
+                        //從哪個位置(0開始計)，刪除多少
+                    })
+                }
+            },
+            //JavaScript的 ES5寫法。   ES6: mounted(){}就可以了 
+            mounted (){
+                //透過axios掛件到http://localhost:3000/contents執行get，然後把拿到的資料以console.log執行
+                /*console.log 和 alert 的除錯差異，alert()函式會阻斷JavaScript程式的執行，從而造成副作用；而console.log()僅在控制檯中列印相關資訊，因此不會造成類似的顧慮。*/
+                axios.get('http://localhost:3000/contents').then((res) => {
+                    this.contents = res.data
+                })
+            }
+
+        })
+    </script>
+</body>
+</html>
