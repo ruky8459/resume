@@ -55,14 +55,18 @@
                         /*畫面更新，先把this.input清空再來把res.data PUSH到contents[]裡面*/
                         this.input=''
                         this.contents.push(res.data)
+                        
                     })
                 },
                 //不用index用id是因為一旦有刪除過的話index序就不會等於id了
-                deleteHandler(index) {
-                    let target = this.contents[index]
-                    axios.delete('http://localhost:3000/contents/${target.id}').then((res)=>{
-                        this.contents.splice(index,1)
+                deleteHandler(id) {
+                    console.log(id)
+                    console.log(${id})
+                    axios.delete('http://localhost:3000/contents/'+id).then((res)=>{
+                        this.contents.splice(id,1)
                         //從哪個位置(0開始計)，刪除多少
+                        
+                        
                     })
                 }
             },
